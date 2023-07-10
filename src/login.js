@@ -30,7 +30,7 @@ function LoginForm(props){
   const [password, setPassword] = useState('');
   
   function handle(){
-    fetch(`${process.env.REACT_APP_API_IP_ADDRESS}/account/login/${email}/${password}`)
+    fetch(`http://52.91.35.35:3000/account/login/${email}/${password}`)
     .then(response => response.text())
     .then(text => {
       try {
