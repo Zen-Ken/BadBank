@@ -61,7 +61,6 @@ function LoginForm(props){
       placeholder="Enter email" 
       value={email} 
       onChange={e => setEmail(e.currentTarget.value)}/><br/>
-
     Password<br/>
     <input 
       id="txtPassword"
