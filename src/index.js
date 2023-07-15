@@ -17,6 +17,7 @@ function Spa() {
             <div className="container" style={{padding: "20px"}}>
               <Routes>
                   <Route exact path="/" element ={<Login />} />
+                  <Route path="/login/" element ={<Login />} />
                   <Route path="/CreateAccount" element={<CreateAccount />} />
               </Routes>
             </div>
