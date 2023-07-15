@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client';
 import { HashRouter, BrowserRouter, Routes, Route } from "react-router-dom";
 import { Login } from "./login";
 import { CreateAccount } from './createaccount';
+import { Deposite } from './deposite';
 import { NavBar } from "./navbar";
 import { UserProvider } from "./context";
 import 'bootstrap/dist/css/bootstrap.css'
@@ -19,6 +20,7 @@ function Spa() {
                   <Route exact path="/" element ={<Login />} />
                   <Route path="/login/" element ={<Login />} />
                   <Route path="/CreateAccount" element={<CreateAccount />} />
+                  <Route path="/deposite/" element={<Deposite />} />
               </Routes>
             </div>
           </UserProvider>

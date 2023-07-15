@@ -26,7 +26,7 @@ export function NavBar(){
             <a className="nav-link" href="#/login/">Account</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#/deposit/">Deposit</a>
+            <a className="nav-link" href="#/deposite/">Deposite</a>
           </li>
           <li className="nav-item">
             <a className="nav-link" href="#/withdraw/">Withdraw</a>
