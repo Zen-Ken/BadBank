@@ -5,6 +5,7 @@ import { HashRouter, BrowserRouter, Routes, Route } from "react-router-dom";
 import { Login } from "./login";
 import { CreateAccount } from './createaccount';
 import { Deposite } from './deposite';
+import { Withdraw } from './withdraw';
 import { NavBar } from "./navbar";
 import { UserProvider } from "./context";
 import 'bootstrap/dist/css/bootstrap.css'
@@ -21,6 +22,7 @@ function Spa() {
                   <Route path="/login/" element ={<Login />} />
                   <Route path="/CreateAccount" element={<CreateAccount />} />
                   <Route path="/deposite/" element={<Deposite />} />
+                  <Route path="/withdraw/" element ={<Withdraw />} />
               </Routes>
             </div>
           </UserProvider>

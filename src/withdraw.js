@@ -1,14 +1,15 @@
 import { React, useContext, useState, useEffect } from "react";
 import { UserContext, Card } from "./context";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate  } from 'react-router-dom'
 
-export function Deposite(){
+
+export function Withdraw(){
     const [show, setShow]     = useState(true);
     const [status, setStatus] = useState('');  
     const {user, setUser}     = useContext(UserContext);
     const [amount, setAmount] = useState('');
-  
-    const history = useNavigate ();
+
+    const history = useNavigate();
     const handleNotLoggedin = () => {
       history.push('/Login');
     };
@@ -24,42 +25,47 @@ export function Deposite(){
                 handleNotLoggedin()
             }
         });
-    };
+  };
   
     
-    // For Testing
     useEffect(()=>{
       if(JSON.stringify(user) === '{}')
-        handleNotLoggedin()
+        handleNotLoggedin();
     },[]);
   
     return (
       <Card
-        bgcolor="warning"
-        header="Deposit"
+        bgcolor="success"
+        header="Withdraw"
         status={status}
         body={show ? 
-          <DepositeForm setShow={setShow} setStatus={setStatus} amount={amount} setAmount={setAmount} user={user} setUser={setUser} /> :
-          <DepositMsg setShow={setShow} setStatus={setStatus} useNavigate ={useNavigate }/>}
+          <WithdrawForm setShow={setShow} setStatus={setStatus} user={user} setUser={setUser} amount={amount}  setAmount={setAmount}/> :
+          <WithdrawMsg setShow={setShow} setStatus={setStatus} useNavigate={useNavigate}/>}
       />
     )
   }
   
-  function DepositeForm(props){  
+  function WithdrawForm(props){
+  
     function validate(input){
-      if (0 >= input) {
-        props.setStatus("enter a number greater than 0");
+  
+      if (input > props.user.balance) {
+        props.setStatus("transaction failed");
+        return false;
+      }
+      if (0 > input) {
+        props.setStatus("enter a positive number only");
         return false;
       }
       props.setStatus('');
-        return true;
+      return true;
     }
   
     function handle(){
       if(!validate(props.amount))
-        return
+       return
   
-      fetch(`${process.env.REACT_APP_API_IP_ADDRESS}/account/update/${props.user.email}/${props.amount}`)
+      fetch(`${process.env.REACT_APP_API_IP_ADDRESS}/account/update/${props.user.email}/-${props.amount}`)
       .then(response => response.text())
       .then(text => {
           try {
@@ -67,34 +73,38 @@ export function Deposite(){
               props.setUser({...props.user, balance: data.balance})
               props.setStatus('');
               props.setShow(false);
+              console.log('JSON:', data);
           } catch(err) {
-              props.setStatus('Deposit failed')
-              console.log("Deposite Error with backend")
+              props.setStatus('Withdrawal failed')
+              console.log('err:', text);
           }
       });
     }
-    return (<>
-      <h5> Mr.{props.user.name} Your Balance is:</h5>
-      <h3> Balance: ${props.user.balance}</h3>
   
+    return(<>
+      <h5> Mr.{props.user.name} Your Balance is:</h5>
+      <h3> Balance: ${props.user.balance} </h3>
+      
       Amount<br/>
       <input type="number" 
-        className="form-control w-90" 
+        className="form-control" 
         placeholder="Enter amount" 
-        value={props.amount} onChange={e => props.setAmount(e.currentTarget.value)}/><br/>
+        value={props.amount} 
+        onChange={e => props.setAmount(e.currentTarget.value)}/><br/>
   
       <button type="submit" 
         className="btn btn-light" 
-        onClick={handle}
-       >Deposit</button>
-    </>);
-  } 
+        onClick={handle}>
+          Withdraw
+      </button>
   
-  function DepositMsg(props){
-    const history = props.useNavigate ();
+    </>);
+  }
+  function WithdrawMsg(props){
+    const history = props.useNavigate();
   
     const handleHomeBtn = () => {
-      history('/Login');
+      history('/login');
     };
   
     return (<>
@@ -115,5 +125,29 @@ export function Deposite(){
       
     </>);
   } 
+  // function WithdrawMsg(props){
+  //   // const history = props.useNavigate();
   
+  //   // const handleHomeBtn = () => {
+  //   //   history.push('/Login');
+  //   // };
+  
+  //   return (<>
+  //     <h5>Your Money Has Been Withdrawn</h5>
+  //     <button type="submit" 
+  //       className="btn btn-light mx-1" 
+  //       onClick={() => {
+  //           props.setShow(true);
+  //           props.setStatus('');
+  //       }}>
+  //         Withdraw Again
+  //     </button>
+  //     {/* <button type="submit" 
+  //       className="btn btn-light m-1" 
+  //       onClick={handleHomeBtn}>
+  //         Home
+  //     </button>
+  //      */}
+  //   </>);
+  // } 
   
