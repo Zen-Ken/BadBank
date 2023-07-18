@@ -6,6 +6,7 @@ import { Login } from "./login";
 import { CreateAccount } from './createaccount';
 import { Deposite } from './deposite';
 import { Withdraw } from './withdraw';
+import { Balance } from './balance';
 import { NavBar } from "./navbar";
 import { UserProvider } from "./context";
 import 'bootstrap/dist/css/bootstrap.css'
@@ -23,6 +24,7 @@ function Spa() {
                   <Route path="/CreateAccount" element={<CreateAccount />} />
                   <Route path="/deposite/" element={<Deposite />} />
                   <Route path="/withdraw/" element ={<Withdraw />} />
+                  <Route path="/balance/" element ={<Balance />} />
               </Routes>
             </div>
           </UserProvider>
