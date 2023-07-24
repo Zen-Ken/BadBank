@@ -14,6 +14,9 @@ export function NavBar(){
       {/* <li className="nav-item">
         <a className="nav-link" href="#/login/">Login</a>
       </li> */}
+      <span class="navbar-text">
+        Navbar text with an inline element
+      </span>
       </>
       : 
       <>
@@ -36,6 +39,9 @@ export function NavBar(){
           </li>
         </ul>
       </div>
+      <span class="navbar-text">
+        Welcome, {user.name}
+      </span>
       </>}
     </div>
     </nav>

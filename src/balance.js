@@ -22,7 +22,7 @@ export function Balance(){
         header="Balance"
         status={status}
         body=
-          {<BalanceMsg/>}
+          {<BalanceMsg user={user}/>}
       />
     )
   
