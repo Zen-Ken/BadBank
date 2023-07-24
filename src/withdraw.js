@@ -102,7 +102,7 @@ export function Withdraw(){
             props.setShow(true);
             props.setStatus('');
         }}>
-          Deposit Again
+          Withdraw Again
       </button>
       <button type="submit" 
         className="btn btn-light m-1" 
