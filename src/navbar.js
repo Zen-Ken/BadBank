@@ -10,15 +10,8 @@ export function NavBar(){
     <div className="container-fluid">
       <a className="navbar-brand" href="#">BadBank</a>
       {JSON.stringify(user) === '{}' ?
-      <>
-      {/* <li className="nav-item">
-        <a className="nav-link" href="#/login/">Login</a>
-      </li> */}
-      <span class="navbar-text">
-        Navbar text with an inline element
-      </span>
-      </>
-      : 
+      <></>
+      :
       <>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>

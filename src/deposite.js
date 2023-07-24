@@ -13,19 +13,6 @@ export function Deposite(){
       history.push('/Login');
     };
   
-    const reloadUser = () => {
-      fetch(`${process.env.REACT_APP_API_IP_ADDRESS}/account/login/${user.email}/${amount}`)
-        .then(response => response.text())
-        .then(text => {
-            try {
-                const data = JSON.parse(text);
-                setUser(data);
-              } catch(err) {
-                handleNotLoggedin()
-            }
-        });
-    };
-  
     
     // For Testing
     useEffect(()=>{

@@ -71,7 +71,6 @@ function LoginForm(props){
       value={password} 
       onChange={e => setPassword(e.currentTarget.value)}
       onKeyPress={handleKeyPress}/><br/>
-
     <button id="btnLogin" type="submit" className="btn btn-light ml-1 my-1" onClick={handle}>Login</button><br/>
     New User? <a className=' link-body-emphasis' href=".#/CreateAccount/">Create Account</a>
   </>);
