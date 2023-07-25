@@ -8,7 +8,7 @@ export function Balance(){
   
     const history = useNavigate ();
     const handleNotLoggedin = () => {
-      history.push('/Login');
+      history('/Login');
     };
   
     useEffect(()=>{

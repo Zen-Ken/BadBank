@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import { createRoot } from 'react-dom/client';
 import { HashRouter, BrowserRouter, Routes, Route } from "react-router-dom";
 import { Login } from "./login";
+import { Account } from './account';
 import { CreateAccount } from './createaccount';
 import { Deposite } from './deposite';
 import { Withdraw } from './withdraw';
@@ -25,6 +26,7 @@ function Spa() {
                   <Route path="/deposite/" element={<Deposite />} />
                   <Route path="/withdraw/" element ={<Withdraw />} />
                   <Route path="/balance/" element ={<Balance />} />
+                  <Route path="/account/" element ={<Account />} />
               </Routes>
             </div>
           </UserProvider>

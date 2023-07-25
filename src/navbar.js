@@ -1,9 +1,14 @@
 import { useContext } from "react";
 import { UserProvider, UserContext, Card } from "./context";
+import { useNavigate } from 'react-router-dom';
 
 export function NavBar(){
   const {user , setUser}        = useContext(UserContext);
+  const history = useNavigate();
   
+  const handle = () => {
+    history('/account');
+  };
   return(
 
   <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -30,10 +35,11 @@ export function NavBar(){
           <li className="nav-item">
             <a className="nav-link" href="#/balance/">Balance</a>
           </li>
+
         </ul>
       </div>
-      <span class="navbar-text">
-        Welcome, {user.name}
+      <span className="navbar-text">
+        Welcome, <button className="btn btn-dark" onClick={handle}> {user.name}</button>
       </span>
       </>}
     </div>

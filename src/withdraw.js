@@ -11,7 +11,7 @@ export function Withdraw(){
 
     const history = useNavigate();
     const handleNotLoggedin = () => {
-      history.push('/Login');
+      history('/Login');
     };
   
     
