@@ -5,6 +5,16 @@ import { useNavigate } from 'react-router-dom'
 export function Account(){
     const {user, setUser}   = useContext(UserContext);
     const [edit, setEdit]   = useState(false);    
+
+    const history = useNavigate ();
+    const handleNotLoggedin = () => {
+      history('/Login');
+    };
+    useEffect(()=>{
+        if(JSON.stringify(user) === '{}')
+          handleNotLoggedin()
+      },[]);
+    
     return (
         <Card
           bgcolor="dark"
@@ -21,6 +31,7 @@ function AccountForm(props){
        props.setEdit(true);
     }
 
+    
     return(<div className="text my-0">
         <p>Name: {props.user.name}</p>
         <p>Email: {props.user.email}</p>
@@ -28,7 +39,7 @@ function AccountForm(props){
         className="btn btn-light m-1" 
         onClick={handleEdit}>
           Edit
-      </button> 
+      </button>
     </div>)
 }
 
@@ -43,7 +54,7 @@ function AccountEdit(props){
         if(userInfo.name!=props.user.name || userInfo.email!=props.user.email)
         {console.log("save")}
     }
-
+    
     return(<div className="text my-0">
         <p>Name: <input value={userInfo.name}  onChange={e => setUserInfo(e.currentTarget.value)}/></p>
         <p>Email: <input value={userInfo.email}  onChange={e => setUserInfo(e.currentTarget.value)}/></p>
@@ -51,7 +62,7 @@ function AccountEdit(props){
         className="btn btn-light m-1" 
         onClick={handleSave}>
           Save
-      </button> 
+        </button>       
     </div>
     )
 }

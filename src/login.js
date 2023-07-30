@@ -79,7 +79,7 @@ function LoginMsg(props){
   function handle(){
     props.setShow(true);
     props.setStatus('');
-    //props.setName('');
+    props.setUser({});
   }
 
   return(<>
