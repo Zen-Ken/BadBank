@@ -20,7 +20,7 @@ export function Account(){
           bgcolor="dark"
           header="Deposit"
           body={ edit ?
-            <AccountEdit user={user} setEdit={setEdit}/>:
+            <AccountEdit user={user} setEdit={setEdit} setUser={setUser}/>:
             <AccountForm user={user} setEdit={setEdit}/>}
         />
     )
@@ -44,20 +44,31 @@ function AccountForm(props){
 }
 
 function AccountEdit(props){
-    const [userInfo, setUserInfo]   = useState({
-        name:props.user.name,
-        email:props.user.email
-    });    
-
+    const [newName, setnewName]   = useState(props.user.name)
+    const [newEmail, setnewEmail] = useState(props.user.email)
+  
     function handleSave(){
-        props.setEdit(false);
-        if(userInfo.name!=props.user.name || userInfo.email!=props.user.email)
-        {console.log("save")}
+        if(newName!==props.user.name || newEmail!==props.user.email){
+          console.log("sending message to backend");
+          fetch(`${process.env.REACT_APP_API_IP_ADDRESS}/account/updateUser/${props.user.email.toLowerCase()}/${newEmail}/${newName}`)
+          .then(response => response.text())
+          .then(text => {
+            try {
+              const data = JSON.parse(text);
+              props.setUser({...data[0]})
+            } 
+            catch(err) {
+              props.setEdit(false);
+              console.log("Fail response from Backend");  
+            }
+          });
+      }
+      props.setEdit(false);
     }
     
     return(<div className="text my-0">
-        <p>Name: <input value={userInfo.name}  onChange={e => setUserInfo(e.currentTarget.value)}/></p>
-        <p>Email: <input value={userInfo.email}  onChange={e => setUserInfo(e.currentTarget.value)}/></p>
+        <p>Name: <input value={newName}  onChange={e => setnewName(e.currentTarget.value)}/></p>
+        <p>Email: <input value={newEmail}  onChange={e => setnewEmail(e.currentTarget.value)}/></p>
         <button type="submit" 
         className="btn btn-light m-1" 
         onClick={handleSave}>
