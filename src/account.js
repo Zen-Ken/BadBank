@@ -18,7 +18,7 @@ export function Account(){
     return (
         <Card
           bgcolor="dark"
-          header="Deposit"
+          header="Account"
           body={ edit ?
             <AccountEdit user={user} setEdit={setEdit} setUser={setUser}/>:
             <AccountForm user={user} setEdit={setEdit}/>}
