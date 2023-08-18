@@ -9,7 +9,6 @@ import { Deposite } from './deposite';
 import { Withdraw } from './withdraw';
 import { Balance } from './balance';
 import { NavBar } from "./navbar";
-import { PasswordReset } from './passwordreset';
 import { UserProvider } from "./context";
 import 'bootstrap/dist/css/bootstrap.css'
 
@@ -28,7 +27,6 @@ function Spa() {
                   <Route path="/withdraw/" element ={<Withdraw />} />
                   <Route path="/balance/" element ={<Balance />} />
                   <Route path="/account/" element ={<Account />} />
-                  <Route path="/passwordreset/" element ={<PasswordReset />} />
               </Routes>
             </div>
           </UserProvider>
